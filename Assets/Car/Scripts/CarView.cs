@@ -12,6 +12,6 @@ public class CarView : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("CarView: OnMouseDown");
+        OnClick?.Invoke();
     }
 }
