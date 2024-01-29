@@ -10,6 +10,7 @@ namespace Car.Scripts
         private CarView carView { get; set; }
         private Fsm<CarStates> Fsm;
         private CarStoppedState<CarStates> _carStoppedState;
+        private CarRollingState<CarStates> _carRollingState;
         
         public void Initialize(CarView carView)
         {
@@ -17,10 +18,14 @@ namespace Car.Scripts
             this.carView.OnClick += OnCarClick;
         }
 
-        private void Awake()
+        private void Start()
         {
             _carStoppedState = new CarStoppedState<CarStates>(carView);
+            _carRollingState = new CarRollingState<CarStates>(carView);
+            _carStoppedState.AddTransitionState(CarStates.Rolling, _carRollingState);
+            
             Fsm = new Fsm<CarStates>(_carStoppedState);
+           
         }
 
         private void Update()
@@ -32,6 +37,7 @@ namespace Car.Scripts
         {
             Fsm.Transition(CarStates.Rolling);
         }
+        
 
        
     }

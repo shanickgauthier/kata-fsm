@@ -21,6 +21,12 @@ namespace Car.Scripts.States
         public override void Execute()
         {
             Debug.Log("Car stopped execute");
+          
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
         }
     }
 }
