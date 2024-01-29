@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CarView : MonoBehaviour
 {
-    public event Action OnClick; 
+    public event Action OnClick;
+
     private void Awake()
     {
-        new CarPresenter(this);
+        var controller = gameObject.AddComponent<CarController>();
+        controller.Initialize(this);
     }
 
     private void OnMouseDown()
